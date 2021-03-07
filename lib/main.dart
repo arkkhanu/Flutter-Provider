@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutterprovider/ExpensionList.dart';
 import 'package:flutterprovider/Model.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,11 @@ class MyHomePage extends StatelessWidget {
               MySpecialContent(),
               Model().showSomeText(context),
               Model().showSwitch(context),
-              Model().showAction()
+              Model().showAction(),
+              ElevatedButton(
+                  child: Text("Move to Next"),
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExpensionList())))
             ],
           ),
         ),
@@ -89,12 +93,10 @@ class MySpecialContent extends StatelessWidget {
   }
 }
 
-
-
 class MyFloatingActionButtion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var model = Provider.of<Model>(context);
+    var model = Provider.of<Model>(context, listen: false);
     return FloatingActionButton(
       backgroundColor: Colors.blue,
       onPressed: () {

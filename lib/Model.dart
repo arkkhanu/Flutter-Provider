@@ -10,13 +10,14 @@ class Model with ChangeNotifier {
   void setisToogle(bool _val) {
     _isToogle = _val;
     notifyListeners();
+
   }
 
   Widget showSomeText(BuildContext context_) {
     print("Inner class value is " + getisToogle.toString());
     return Consumer<Model>(builder: (context_, model, _) {
       print("Most inner");
-      return Text("Your value is " + getisToogle.toString());
+      return Text("Your value is " + model.getisToogle.toString());
     });
   }
 
@@ -53,11 +54,11 @@ class Model with ChangeNotifier {
                         // model.setisToogle(val);
                       }),
                   actions: [
-                    FlatButton(
+                    TextButton(
                       onPressed: () => Navigator.pop(_),
                       child: Text("Cancel"),
                     ),
-                    FlatButton(
+                    TextButton(
                       onPressed: () => Navigator.pop(_),
                       child: Text("Ok"),
                     )
